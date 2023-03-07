@@ -5,7 +5,7 @@ This is the second major collaborative project in the ALX SE program. This proje
 # Scope
 
 The project is in four parts. Each part handles different aspects of Wb development.
-This first section deals with building the **console** that will act as a command line interpreter to manipulate data (no visual interface yet, perfect for development and debugging.
+This first section deals with building the `console` that will act as a command line interpreter to manipulate data (no visual interface yet, perfect for development and debugging.
 
 - The second section will be the front-end.
 - The third section will be the database management system
