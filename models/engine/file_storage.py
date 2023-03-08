@@ -5,7 +5,9 @@ from models.base_model import BaseModel
 
 
 class FileStorage:
-    """Serialize and deserialize instances to a JSON file"""
+    """Serialize and deserialize instances to a JSON file
+    and deserialize JSON file to instances
+    """
     __file_path = 'file.json'
     __objects = {}
 
