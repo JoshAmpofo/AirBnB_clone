@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """ Define main model class for console"""
 import cmd
 import uuid
@@ -7,7 +7,6 @@ from datetime import datetime
 
 class BaseModel:
     """Defines all common attributes/methods for other classes"""
-    prompt = '(hbnb) '
 
     def __init__(self):
         """initialize BaseModel Instances"""
