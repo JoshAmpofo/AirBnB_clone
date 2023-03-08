@@ -71,6 +71,10 @@ class TestBaseModel(unittest.TestCase):
         bmd = BaseModel()
         self.assertEqual(bmd.to_dict()["updated_at"], 
                 bmd.updated_at.isoformat())
+    def test_no_args_usage(self):
+        """checks if *args is not used in BaseModel dictionary"""
+        bmd = BaseModel(None)
+        self.assertNotIn(None, bmd.__dict__.values())
 
 
 if __name__ == "__main__":
