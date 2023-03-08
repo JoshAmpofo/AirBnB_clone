@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 """ Define main model class for console"""
-import cmd
 import uuid
 from datetime import datetime
 
