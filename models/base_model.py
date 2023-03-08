@@ -9,6 +9,7 @@ class BaseModel:
 
     def __init__(self, *args, **kwargs):
         """initialize BaseModel Instances"""
+        from models import storage
         if kwargs:
             for k, v in kwargs.items():
                 if k != '__class__':
@@ -19,10 +20,13 @@ class BaseModel:
         else:
             self.id = str(uuid.uuid4())
             self.created_at = self.updated_at = datetime.now()
+            storage.new(self)
 
     def save(self):
         """saves object instance modification date"""
+        from models import storage
         self.updated_at = datetime.now()
+        storage.save()
 
     def to_dict(self):
         """returns dictionary copy of all instances"""
