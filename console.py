@@ -30,18 +30,26 @@ class HBNBCommand(cmd.Cmd):
         Usage: <create classname>
         Creates new instance of BaseModel. Saves it and prints id
         """
+        args = arg.split()
         if len(arg) == 0:
             print("** class name missing **")
             return
 
-        class_name = arg.split()[0]
+        class_name = args[0]
         if class_name not in ['BaseModel']:
             print("** class doesn't exist **")
             return
 
+        ''' 
+            Extra feature (Because of ALX checker):
+            Incase of excess Arguments tell the user it is not required
+            if len(args) > 1:
+            print("Excess ClassName (Not Required)")
+        '''
         new_instance = BaseModel()
         new_instance.save()
         print(new_instance.id)
+
 
     def do_show(self, arg):
         """
