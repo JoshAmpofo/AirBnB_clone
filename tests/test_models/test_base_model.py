@@ -107,14 +107,121 @@ class TestBaseModel(unittest.TestCase):
                                            "%Y-%m-%dT%H:%M:%S.%f"))
 
     def test_kwargs_empty(self):
-        """checks if id, created_at and update_at are generated automatically if not in kwargs"""
+        """checks if id, created_at and update_at are generated 
+           automatically if not in kwargs
+        """
         obj_dict = {}
         bmd = BaseModel(**obj_dict)
         self.assertTrue(type(bmd.id) is str)
         self.assertTrue(type(bmd.created_at) is datetime)
         self.assertTrue(type(bmd.updated_at) is datetime)
 
+    def test_kwargs_passed(self):
+        """Checks for kwargs and ignores args in BaseModel instance"""
+        obj_dt = datetime.now()
+        obj_dt_iso = obj_dt.isoformat()
+        bmd = BaseModel("1234", id="599", created_at=obj_dt_iso, name="AirBnB")
+        self.assertEqual(bmd.id, "599")
+        self.assertEqual(bmd.created_at, obj_dt)
+        self.assertEqual(bmd.name, "AirBnB")
 
+    def test_dict_obj_to_BaseModel(self):
+        """checks if storage.new() is not called when a BaseModel obj is 
+           created from a dict obj
+        """
+        obj_dict = {"id":uuid4(), "created_at":datetime.utcnow().isoformat(), 
+                   "updated_at":datetime.utcnow().isoformat(), 
+                   "name":"AirBnB"}
+        bmd = BaseModel(**obj_dict)
+        self.assertNotIn(bmd, models.storage.all().values())
+        
+        del bmd
+
+        bmd = BaseModel()
+        self.assertIn(bmd, models.storage.all().values())
+
+    def test_save_update_updated_at(self):
+        """Checks if the save() method updates "updated_at" attr"""
+        bmd = BaseModel()
+        sleep(0.05)
+        temp_update = bmd.updated_at
+        bmd.save()
+        self.assertLess(temp_update, bmd.updated_at)
+
+    def test_that_save_can_update_two_or_more_times(self):
+        """
+        Check if save method updates 'updated_at' two times
+        """
+        bmd = BaseModel()
+        sleep(0.05)
+        temp_update = bmd.updated_at
+        bmd.save()
+        sleep(0.05)
+        temp1_update = bmd.updated_at
+        self.assertLess(temp_update, temp1_update)
+        sleep(0.03)
+        bmd.save()
+        self.assertLess(temp1_update, bmd.updated_at)
+
+    def test_save_update_file(self):
+        """
+        Check if file is updated when the 'save' method is called
+        """
+        bmd = BaseModel()
+        bmd.save()
+        bm_id = "BaseModel.{}".format(bmd.id)
+        with open("file.json", encoding="utf-8") as f:
+            self.assertIn(bm_id, f.read())
+
+    def test_to_dict_keys(self):
+        """
+        Checks whether to_dict() returns the expected key
+        """
+        obj_dict = BaseModel().to_dict()
+        attrs = ("id", "created_at", "updated_at", "__class__")
+        for attr in attrs:
+            self.assertIn(attr, obj_dict)
+
+    def test_to_dict_added_attributes(self):
+        """
+        Checks if new attributes are returned by to_dict()
+        """
+        bmd = BaseModel()
+        attrs = ["id", "created_at", "updated_at", "__class__"]
+        bmd.name = "AirBnB"
+        bmd.email = "bnbair@gmail.com"
+        attrs.extend(["name", "email"])
+        for attr in attrs:
+            self.assertIn(attr, bmd.to_dict())
+
+    def test_to_dict_output(self):
+        """
+        Checks the output returned by to_dict()
+        """
+        bmd = BaseModel()
+        obj_dt = datetime.now()
+        bmd.id = "599"
+        bmd.created_at = bmd.updated_at = obj_dt
+        test_dict = {
+            'id': "599",
+            'created_at': obj_dt.isoformat(),
+            'updated_at': obj_dt.isoformat(),
+            '__class__': 'BaseModel'
+        }
+        self.assertDictEqual(test_dict, bmd.to_dict())
+
+    def test_to_dict_with_args(self):
+        """
+        Checks that TypeError is returned when argument is passed to to_dict()
+        """
+        bmd = BaseModel()
+        with self.assertRaises(TypeError):
+            bmd.to_dict(None)
+
+    def test_to_dict_not_dunder_dict(self):
+        """Checks that to_dict() is a dict object not equal to __dict__"""
+        bmd = BaseModel()
+        self.assertNotEqual(bmd.to_dict(), bmd.__dict__)
 
 
 if __name__ == "__main__":
