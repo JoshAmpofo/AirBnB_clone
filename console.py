@@ -19,7 +19,7 @@ from models.review import Review
 class HBNBCommand(cmd.Cmd):
     """Creates command line interpreter for AirBnB console"""
     prompt = '(hbnb) '
-    available_classes = ['BaseModel', 'User']
+    available_classes = ['BaseModel', 'User', 'Place', 'State', 'City', 'Amenity', 'Review']
 
     def do_quit(self, arg):
         """Quit command to exit the program"""
