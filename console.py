@@ -22,7 +22,8 @@ class HBNBCommand(cmd.Cmd):
     available_classes = ['BaseModel', 'User', 'Place', 'State', 'City', 'Amenity', 'Review']
 
     def do_quit(self, arg):
-        """Quit command to exit the program"""
+        """Quit command to exit the program
+        """
         return True
 
     def do_EOF(self, arg):
@@ -127,16 +128,19 @@ class HBNBCommand(cmd.Cmd):
         Usage: <all classname> or <all>
         """
         args = arg.split()
+        objs = storage.all()
         if len(args) > 0:
             class_name = args[0]
             if class_name not in self.available_classes:
                 print("** class doesn't exist **")
-                return
             else:
-                objs = storage.all()
+                output = []
+                for k, v in objs.items():
+                    if class_name == v.__class__.__name__:
+                        output.append(str(objs[k]))
+                print(output)
         else:
-            objs = storage.all()
-        print([str(objs[obj]) for obj in objs])
+            print([str(objs[obj]) for obj in objs])
 
     def do_update(self, arg):
         """Updates an instance based on the class name and id
@@ -164,7 +168,7 @@ class HBNBCommand(cmd.Cmd):
         class_name = args[0]
         instance_id = args[1]
         attribute_name = args[2]
-        attribute_value = args[3]
+        attribute_value = str(args[3])
         if class_name not in self.available_classes:
             print("** class doesn't exist **")
             return
@@ -174,19 +178,20 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
             return
 
-
         obj = storage.all()[key]
-        if attribute_name in type(obj).__dict__:
+        if attribute_name in obj.__dict__:
             '''v_type contains the type of the previous value so that we
                can cast the new value into the required data type
                else if it is not in the dict, store it fresh with a string value
                You can change the data type to your desire and later when you update it 
                it would be stored as that data type
             '''
-            v_type = type(obj.__class__.__dict__[args[2]])
-            setattr(obj, attribute_name, v_type(attribute_value))
+            value_type = type(obj.__class__.__dict__[args[2]])
+            setattr(obj, attribute_name, value_type(attribute_value))
+#            obj.save()
         else:
             setattr(obj, attribute_name, attribute_value)
+#            obj.save()
         storage.save()
 
 
