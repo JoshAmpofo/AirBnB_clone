@@ -168,7 +168,7 @@ class HBNBCommand(cmd.Cmd):
         class_name = args[0]
         instance_id = args[1]
         attribute_name = args[2]
-        attribute_value = str(args[3])
+        attribute_value = args[3].replace('"', '')
         if class_name not in self.available_classes:
             print("** class doesn't exist **")
             return
