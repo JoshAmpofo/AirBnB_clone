@@ -103,5 +103,5 @@ This repository contains the following files:
 ### Pictorial Overview of Project
 
 ### Console side (backend server side)
-[Storage Engines](https://s3.amazonaws.com/alx-intranet.hbtn.io/uploads/medias/2018/6/815046647d23428a14ca.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUSBVO6H7D%2F20230310%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230310T123132Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=2d74812c65f9538a2647ba98e58f1c14dcf8b17ba5f15fedc01d669e230068e8)
+![Storage Engines](https://s3.amazonaws.com/alx-intranet.hbtn.io/uploads/medias/2018/6/815046647d23428a14ca.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUSBVO6H7D%2F20230310%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230310T123132Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=2d74812c65f9538a2647ba98e58f1c14dcf8b17ba5f15fedc01d669e230068e8)
 
