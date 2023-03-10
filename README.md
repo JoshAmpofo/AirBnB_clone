@@ -1,6 +1,7 @@
-![AirBnB logo](https://imgs.search.brave.com/SoaC2WQ8fFNaJ2c_SoMUQLTLyyfqg73IGwcEui9F1o4/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzL2VhLzM4/LzUwL2VhMzg1MGEw/ZTU3YWE5ZmY1ZDcw/MDdkYjBlYzBlNWM4/LmpwZw)
-
 # The AirBnB Clone Project
+
+![hbnb logo](https://user-images.githubusercontent.com/88311316/151070609-19608294-829e-408b-b2b3-5d1f2873f1e3.png)
+
 
 This is the second major collaborative project in the ALX SE program. This project combines all the concepts that have been taught in Sprint 2: Higher Level Programming, specifically Python.
 
@@ -87,21 +88,33 @@ peabody@peabody-VirtualBox:~$
 ### OBJECTS IMPLEMENTED
 This repository contains the following files:
 
-| Folder | File | Description |
+| **Folder** | **File** | **Description** |
 | :--- | :--- | :--- |
-| tests |  | Contains test files for AirBnb Clone |
-|  | console.py | Command line Interpreter for managing AirBnB objects |
-| models | base_model.py | Defines all common attributes/methods for other classes |
-|  | amenity.py | Creates class `amenity` |
-|  | city.py | Creates class `city` |
-|  | place.py | Creates class `place` |
-|  | review.py | Creates class `review` |
-|  | state.py | Creates class `state` |
-|  | user.py | Creates class `user` |
-| models/engine/ | file_storage.py | Serializes instances to a JSON file and deserializes JSON file to instances |
+| [tests](./tests) |  | Contains test files for AirBnb Clone |
+|  | [console.py](./console.py) | Command line Interpreter for managing AirBnB objects |
+| [models](./models) | [base_model.py](./models/base_model.py) | Defines all common attributes/methods for other classes |
+|  | [amenity.py](./models/amenity.py) | Defines subclass `amenity` |
+|  | [city.py](./models/city.py) | Defines subclass `city` |
+|  | [place.py](./models/place.py) | Defines subclass `place` |
+|  | [review.py](./models/review.py) | Defines subclass `review` |
+|  | [state.py](./models/state.py) | Defines subclass `state` |
+|  | [user.py](./models/user.py) | Defines subclass `user` |
+| [models/engine/](./models/engine) | [file_storage.py](./models/engine/file_storage.py) | Serializes instances to a JSON file and deserializes JSON file to instances |
+|  | [AUTHORS](./AUTHORS) | Contains info about project contributors |
 | More models to be updated soon |
 
-### Pictorial Overview of Project
+## Usage :wrench:
+|  **Method**  |  **Description**  |
+| ------------ | ----------------- |
+| [create](./console.py) | Creates object of given class |
+| [show](./console.py)   | Prints the string representation of an instance based on the class name and id |
+| [all](./console.py)    | Prints all the string representation of all instances based or not on the class name |
+| [update](./console.py) | Updates an instance based on the class name and id by adding or updating attribute (saves changes to JSON file) |
+| [destroy](./console.py) | Deletes an instance based on the class name and id (saves changes to JSON file) |
+| [help](./console.py) | Print usage information and description about a specific command |
+| [EOF](./console.py) | Cleanly terminate program using keyboard interrupt |
+| [quit](./console.py) | Quit command to exit program |
+
 
 ### Console side (backend server side)
 ![Storage Engines](https://imgs.search.brave.com/b1DFPRHyUwm2FEudVI2LIE7brnCaQ2KLGPdVQ7cEoyM/rs:fit:1200:669:1/g:ce/aHR0cHM6Ly91c2Vy/LWltYWdlcy5naXRo/dWJ1c2VyY29udGVu/dC5jb20vOTM3NzI3/NzUvMTgzMDMwMjAy/LTdmZTk4Y2VhLTIw/YTUtNGRhNi05MDIz/LTAxODc1MmJkYzQw/NS5wbmc)
