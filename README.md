@@ -92,12 +92,12 @@ This repository contains the following files:
 | tests |  | Contains test files for AirBnb Clone |
 |  | console.py | Command line Interpreter for managing AirBnB objects |
 | models | base_model.py | Defines all common attributes/methods for other classes |
-| models | amenity.py | Creates class `amenity` |
-| models | city.py | Creates class `city` |
-| models | place.py | Creates class `place` |
-| models | review.py | Creates class `review` |
-| models | state.py | Creates class `state` |
-| models | user.py | Creates class `user` |
+|  | amenity.py | Creates class `amenity` |
+|  | city.py | Creates class `city` |
+|  | place.py | Creates class `place` |
+|  | review.py | Creates class `review` |
+|  | state.py | Creates class `state` |
+|  | user.py | Creates class `user` |
 | models/engine/ | file_storage.py | Serializes instances to a JSON file and deserializes JSON file to instances |
 | More models to be updated soon |
 
