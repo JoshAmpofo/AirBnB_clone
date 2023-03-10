@@ -1,3 +1,5 @@
+![AirBnB logo](https://imgs.search.brave.com/SoaC2WQ8fFNaJ2c_SoMUQLTLyyfqg73IGwcEui9F1o4/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vb3Jp/Z2luYWxzL2VhLzM4/LzUwL2VhMzg1MGEw/ZTU3YWE5ZmY1ZDcw/MDdkYjBlYzBlNWM4/LmpwZw)
+
 # The AirBnB Clone Project
 
 This is the second major collaborative project in the ALX SE program. This project combines all the concepts that have been taught in Sprint 2: Higher Level Programming, specifically Python.
