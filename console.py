@@ -186,19 +186,19 @@ class HBNBCommand(cmd.Cmd):
             return
 
         obj = storage.all()[key]
-        if attribute_name in obj.__dict__:
+        if attribute_name in type(obj).__dict__:
             '''v_type contains the type of the previous value so that we
                can cast the new value into the required data type
                else if it is not in the dict, store it fresh with a string type
                You can change the data type to your later when you run update
                in the future, it would be stored as that data type
             '''
-            value_type = type(obj.__class__.__dict__[args[2]])
+            value_type = type(obj.__class__.__dict__[attribute_name])
             setattr(obj, attribute_name, value_type(attribute_value))
-#            obj.save()
+
         else:
             setattr(obj, attribute_name, attribute_value)
-#            obj.save()
+
         storage.save()
 
 
