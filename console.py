@@ -55,7 +55,7 @@ class HBNBCommand(cmd.Cmd):
             if len(args) > 1:
             print("Excess ClassName (Not Required)")
         '''
-        new_instance = BaseModel()
+        new_instance = eval(class_name)()
         new_instance.save()
         print(new_instance.id)
 
