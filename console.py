@@ -19,7 +19,14 @@ from models.review import Review
 class HBNBCommand(cmd.Cmd):
     """Creates command line interpreter for AirBnB console"""
     prompt = '(hbnb) '
-    available_classes = ['BaseModel', 'User', 'Place', 'State', 'City', 'Amenity', 'Review']
+    available_classes = ['BaseModel',
+                         'User',
+                         'Place',
+                         'State',
+                         'City',
+                         'Amenity',
+                         'Review'
+                         ]
 
     def do_quit(self, arg):
         """Quit command to exit the program
@@ -182,9 +189,9 @@ class HBNBCommand(cmd.Cmd):
         if attribute_name in obj.__dict__:
             '''v_type contains the type of the previous value so that we
                can cast the new value into the required data type
-               else if it is not in the dict, store it fresh with a string value
-               You can change the data type to your desire and later when you update it 
-               it would be stored as that data type
+               else if it is not in the dict, store it fresh with a string type
+               You can change the data type to your later when you run update
+               in the future, it would be stored as that data type
             '''
             value_type = type(obj.__class__.__dict__[args[2]])
             setattr(obj, attribute_name, value_type(attribute_value))
