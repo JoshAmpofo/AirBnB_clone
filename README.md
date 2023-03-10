@@ -1,4 +1,4 @@
-![AirBnB](assets/hbnb_logo.png)
+![AirBnB clone](https://s3.amazonaws.com/alx-intranet.hbtn.io/uploads/medias/2018/6/65f4a1dd9c51265f49d0.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUSBVO6H7D%2F20230310%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230310T123132Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=3711c3c4d1d58c7c5078d6c7094d782cfe5d19e695f913bbfff0f1eac0272754)
 # The AirBnB Clone Project
 
 This is the second major collaborative project in the ALX SE program. This project combines all the concepts that have been taught in Sprint 2: Higher Level Programming, specifically Python.
@@ -99,3 +99,9 @@ This repository contains the following files:
 | models | user.py | Creates class `user` |
 | models/engine/ | file_storage.py | Serializes instances to a JSON file and deserializes JSON file to instances |
 | More models to be updated soon |
+
+### Pictorial Overview of Project
+
+### Console side (backend server side)
+[Storage Engines](https://s3.amazonaws.com/alx-intranet.hbtn.io/uploads/medias/2018/6/815046647d23428a14ca.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUSBVO6H7D%2F20230310%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230310T123132Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=2d74812c65f9538a2647ba98e58f1c14dcf8b17ba5f15fedc01d669e230068e8)
+
