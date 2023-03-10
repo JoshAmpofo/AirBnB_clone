@@ -19,6 +19,7 @@ from models.review import Review
 class HBNBCommand(cmd.Cmd):
     """Creates command line interpreter for AirBnB console"""
     prompt = '(hbnb) '
+    available_classes = ['BaseModel', 'User']
 
     def do_quit(self, arg):
         """Quit command to exit the program"""
@@ -44,7 +45,7 @@ class HBNBCommand(cmd.Cmd):
             return
 
         class_name = args[0]
-        if class_name not in ['BaseModel']:
+        if class_name not in self.available_classes:
             print("** class doesn't exist **")
             return
 
@@ -70,7 +71,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         class_name = args[0]
-        if class_name not in ['BaseModel']:
+        if class_name not in self.available_classes:
             print("** class doesn't exist **")
             return
 
@@ -98,7 +99,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         class_name = args[0]
-        if class_name not in ['BaseModel']:
+        if class_name not in self.available_classes:
             print("** class doesn't exist **")
             return
 
@@ -126,10 +127,9 @@ class HBNBCommand(cmd.Cmd):
         Usage: <all classname> or <all>
         """
         args = arg.split()
-        classes = ['BaseModel']
         if len(args) > 0:
             class_name = args[0]
-            if class_name not in classes:
+            if class_name not in self.available_classes:
                 print("** class doesn't exist **")
                 return
             else:
@@ -151,31 +151,42 @@ class HBNBCommand(cmd.Cmd):
         if len(args) == 0:
             print("** class name missing **")
             return
-        class_name = args[0]
-        if class_name not in ['BaseModel']:
-            print("** class doesn't exist **")
-            return
         if len(args) == 1:
             print("** instance id missing **")
-            return
-        instance_id = args[1]
-        key = class_name + "." + instance_id
-        if storage.all().get(key) is None:
-            print("** no instance found **")
             return
         if len(args) == 2:
             print("** attribute name missing **")
             return
-        elif len(args) == 3:
+        if len(args) == 3:
             print("** value missing **")
             return
+
+        class_name = args[0]
+        instance_id = args[1]
+        attribute_name = args[2]
+        attribute_value = args[3]
+        if class_name not in self.available_classes:
+            print("** class doesn't exist **")
+            return
+        key = class_name + "." + instance_id
+
+        if storage.all().get(key) is None:
+            print("** no instance found **")
+            return
+
+
+        obj = storage.all()[key]
+        if attribute_name in type(obj).__dict__:
+            '''v_type contains the type of the previous value so that we
+               can cast the new value into the required data type
+               else if it is not in the dict, store it fresh with a string value
+               You can change the data type to your desire and later when you update it 
+               it would be stored as that data type
+            '''
+            v_type = type(obj.__class__.__dict__[args[2]])
+            setattr(obj, attribute_name, v_type(attribute_value))
         else:
-            obj = storage.all()[key]
-            if args[2] in type(obj).__dict__:
-                v_type = type(obj.__class__.__dict__[args[2]])
-                setattr(obj, args[2], v_type(args[3]))
-            else:
-                setattr(obj, args[2], args[3])
+            setattr(obj, attribute_name, attribute_value)
         storage.save()
 
 
