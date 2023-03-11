@@ -90,7 +90,16 @@ This repository contains the following files:
 
 | **Folder** | **File** | **Description** |
 | :--- | :--- | :--- |
-| [tests](./tests) |  | Contains test files for AirBnb Clone |
+| __init__.py | | Treats directories as python modules |
+| | [AUTHORS](./AUTHORS) | Contains info about project contributors |
+| [tests/test_models](./tests/test_models) |  | Contains test files for AirBnb Clone |
+| | [test_amenity](./tests/test_models/test_amenity.py) | Contains test cases for `Amenity` subclass |
+| | [test_base_model](./tests/test_models/test_base_model) | Contains test cases for `BaseModel` parent class |
+| | [test_city](./tests/test_models/test_city) | Contains test cases for `City` subclass |
+| | [test_place](./tests/test_models/test_place) | Contains test cases for `Place` subclass |
+| | [test_review](./tests/test_models/test_review) | Contains test cases for `Review` subclass |
+| | [test_state](./tests/test_models/test_state) | Contains test cases for `State` subclass |
+| | [test_user](./tests/test_models/test_user) | Contains test cases for `User` subclass |
 |  | [console.py](./console.py) | Command line Interpreter for managing AirBnB objects |
 | [models](./models) | [base_model.py](./models/base_model.py) | Defines all common attributes/methods for other classes |
 |  | [amenity.py](./models/amenity.py) | Defines subclass `amenity` |
@@ -100,7 +109,6 @@ This repository contains the following files:
 |  | [state.py](./models/state.py) | Defines subclass `state` |
 |  | [user.py](./models/user.py) | Defines subclass `user` |
 | [models/engine/](./models/engine) | [file_storage.py](./models/engine/file_storage.py) | Serializes instances to a JSON file and deserializes JSON file to instances |
-|  | [AUTHORS](./AUTHORS) | Contains info about project contributors |
 | More models to be updated soon |
 
 ## Usage :wrench:
