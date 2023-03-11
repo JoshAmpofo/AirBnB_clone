@@ -101,6 +101,7 @@ This repository contains the following files:
 | | [test_review](./tests/test_models/test_review) | Contains test cases for `Review` subclass |
 | | [test_state](./tests/test_models/test_state) | Contains test cases for `State` subclass |
 | | [test_user](./tests/test_models/test_user) | Contains test cases for `User` subclass |
+| | [test_console](./tests/test_models/test_console.py) | Contains test cases for `console` |
 | [Test_Engine](./tests/test_models/test_engine/) | [test_file_storage](./tests/test_models/test_engine/test_file_storage.py) | Contains test cases for JSON file storage module |
 | [models](./models) | [base_model.py](./models/base_model.py) | Defines all common attributes/methods for other classes |
 |  | [amenity.py](./models/amenity.py) | Defines subclass `amenity` |
