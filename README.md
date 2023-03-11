@@ -90,9 +90,9 @@ This repository contains the following files:
 
 | **Folder** | **File** | **Description** |
 | :--- | :--- | :--- |
-| `__init__.py` | | Treats directories as python modules |
-| [console.py](./console.py) | | Command line Interpreter for managing AirBnB objects |
-| [AUTHORS](./AUTHORS) | | Contains info about project contributors |
+| | \__init__.py | Treats directories as python modules |
+| | [console.py](./console.py)  | Command line Interpreter for managing AirBnB objects |
+| | [AUTHORS](./AUTHORS) | Contains info about project contributors |
 | [tests](./tests/test_models) |  | Contains test files for AirBnb Clone |
 | | [test_amenity](./tests/test_models/test_amenity.py) | Contains test cases for `Amenity` subclass |
 | | [test_base_model](./tests/test_models/test_base_model) | Contains test cases for `BaseModel` parent class |
