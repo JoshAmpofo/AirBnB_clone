@@ -54,6 +54,15 @@ class HBNBCommand(cmd.Cmd):
             executes invalid command if tokens are in cmd module
             else unknown syntax result
         """
+        """ split command entered into two: outer method name
+            and inner method name. Look for parentheses in inner method
+            if inner method name contains parentheses and outher method name
+            is in dict_args, construct new command string by combining
+            outer method name with args passed to inner method.
+            Look up corresponding method of outer method name in dict_args
+            and call method with new command string as args.
+            Return False if method cannot parse invalud command by user
+        """
         dict_args = {  # command keywords to implement
                 "all": self.do_all,
                 "show": self.do_show,
@@ -64,15 +73,6 @@ class HBNBCommand(cmd.Cmd):
                 }
         match = re.search(r"\.", arg)  # arg search pattern
         if match is not None:  # if match is found
-            """ split command entered into two: outer method name
-            and inner method name. Look for parentheses in inner method
-            if inner method name contains parentheses and outher method name
-            is in dict_args, construct new command string by combining
-            outer method name with args passed to inner method.
-            Look up corresponding method of outer method name in dict_args
-            and call method with new command string as args.
-            Return False if method cannot parse invalud command by user
-            """
             arg_list = [arg[:match.span()[0]], arg[match.span()[1]:]]
             match = re.search(r"\((.*?)\)", arg_list[1])
             if match is not None:
@@ -80,8 +80,8 @@ class HBNBCommand(cmd.Cmd):
                 if command[0] in dict_args.keys():
                     call = "{} {}".format(arg_list[0], command[1])
                     return dict_args[command[0]](call)
-            print("*** Unknown syntax: {}".format(arg))
-            return False
+        print("*** Unknown syntax: {}".format(arg))
+        return False
 
     def emptyline(self):
         """Do nothing when an empty line + ENTER is pressed"""
@@ -100,16 +100,15 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, arg):
         """
         Usage: <create classname>
-        Creates new instance of BaseModel. Saves it and prints id
+        Creates new instance of class. Saves it and prints id
         """
         arg_list = parse(arg)
-        class_name = arg_list[0]
         if len(arg_list) == 0:
             print("** class name missing **")
-        if class_name not in AVAILABLE_CLASSES:
+        elif arg_list[0] not in AVAILABLE_CLASSES:
             print("** class doesn't exist **")
         else:
-            print(eval(class_name)().id)
+            print(eval(arg_list[0])().id)
             storage.save()
 
         '''
@@ -121,23 +120,22 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, arg):
         """
-        Usage: <show classname id>
-        Prints the string representation of an instance based on
+        Usage: show <class> <id> or <class>.show(<id>)
+        Prints the string repr of an instance based on
         class name and id
         """
         arg_list = parse(arg)
         obj_dict = storage.all()
-        class_name = arg_list[0]
         if len(arg_list) == 0:
             print("** class name missing **")
-        elif class_name not in AVAILABLE_CLASSES:
+        elif arg_list[0] not in AVAILABLE_CLASSES:
             print("** class doesn't exist **")
         elif len(arg_list) == 1:
             print("** instance id missing **")
-        elif "{}.{}".format(class_name, arg_list[1]) not in obj_dict:
-            print("** No instance found **")
+        elif "{}.{}".format(arg_list[0], arg_list[1]) not in obj_dict:
+            print("** no instance found **")
         else:
-            print(obj_dict["{}.{}".format(class_name, arg_list[1])])
+            print(obj_dict["{}.{}".format(arg_list[0], arg_list[1])])
 
     def do_destroy(self, arg):
         """
@@ -146,35 +144,32 @@ class HBNBCommand(cmd.Cmd):
         Usage: <destroy ClassName Id>
         """
         arg_list = parse(arg)
-        class_name = arg_list[0]
         obj_dict = storage.all()
         if len(arg_list) == 0:
             print("** class name missing **")
-        elif class_name not in AVAILABLE_CLASSES:
+        elif arg_list[0] not in AVAILABLE_CLASSES:
             print("** class doesn't exist **")
         elif len(arg_list) == 1:
-            print("** instance id is missing **")
-        elif "{}.{}".format(class_name, arg_list[1]) not in obj_dict.keys():
+            print("** instance id missing **")
+        elif "{}.{}".format(arg_list[0], arg_list[1]) not in obj_dict.keys():
             print("** no instance found **")
         else:
             """Modify the abstract storage and save the modified version
             to the JSON file
             """
-            del obj_dict["{}.{}".format(class_name, arg_list[1])]
+            del obj_dict["{}.{}".format(arg_list[0], arg_list[1])]
             storage.save()
 
     def do_all(self, arg):
         """
         Print all string repr of all instances based or not
         on the class name
-
         Usage: <all classname> or <all>
         """
         arg_list = parse(arg)
         objs = storage.all()
         if len(arg_list) > 0 and arg_list[0] not in AVAILABLE_CLASSES:
             print("** class doesn't exist **")
-            print(class_name)
         else:
             output = []
             for v in objs.values():
@@ -186,29 +181,26 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, arg):
         """Updates an instance based on the class name and id
-        by adding or updating a given attribute key/value pair or dict.
-        Saves change to JSON file.
-
-        Usage: update <class name> <id> <attribute name> "<attribute value>"
-        or <class>.update(<id>, <attribute_name>, <attribute_value>)
+        by adding or updating a given attribute.
+        Can also be updated using a k/v pair in dict.
+        Usage: update <class> <id> <attr name> <attr value>
+        or <class>.update(<id>, <attr name>, <attr value>)
         or <class>.update(<id>, <dictionary>)
-
         Only one attribute can be updated at a time.
         Attribute value is casted to attribute type
         """
         arg_list = parse(arg)
-        class_name = arg_list[0]
         obj_dict = storage.all()
         if len(arg_list) == 0:
             print("** class name missing **")
             return
-        if class_name not in AVAILABLE_CLASSES:
+        if arg_list[0] not in AVAILABLE_CLASSES:
             print("** class doesn't exist **")
             return
         if len(arg_list) == 1:
             print("** instance id missing **")
             return
-        if "{}.{}".format(class_name, arg_list[1]) not in obj_dict.keys():
+        if "{}.{}".format(arg_list[0], arg_list[1]) not in obj_dict.keys():
             print("** no instance found **")
             return
         if len(arg_list) == 2:
@@ -221,12 +213,12 @@ class HBNBCommand(cmd.Cmd):
                 print("** value missing **")
                 return False
         if len(arg_list) == 4:
-            obj = obj_dict["{}.{}".format(class_name, arg_list[1])]
+            obj = obj_dict["{}.{}".format(arg_list[0], arg_list[1])]
             if arg_list[2] in obj.__class__.__dict__.keys():
                 value_type = type(obj.__class__.__dict__[arg_list[2]])
                 obj.__dict__[arg_list[2]] = value_type(arg_list[3])
             else:
-                obj.__dict__[arg_list[2]] == arg_list[3]
+                obj.__dict__[arg_list[2]] = arg_list[3]
         elif type(eval(arg_list[2])) == dict:
             obj = obj_dict["{}.{}".format(arg_list[0], arg_list[1])]
             for k, v in eval(arg_list[2]).items():
