@@ -55,8 +55,8 @@ class TestHBNBCommand_help(unittest.TestCase):
 
     def test_help_all(self):
         h = ("Print all string repr of all instances based or not\n        "
-            "on the class name\n        "
-            "Usage: <all classname> or <all>")
+             "on the class name\n        "
+             "Usage: <all classname> or <all>")
         with patch("sys.stdout", new=StringIO()) as output:
             self.assertFalse(HBNBCommand().onecmd("help all"))
             self.assertEqual(h, output.getvalue().strip())
@@ -1499,6 +1499,7 @@ class TestHBNBCommand_update(unittest.TestCase):
         HBNBCommand().onecmd(testCmd)
         test_dict = storage.all()["Place.{}".format(testId)].__dict__
         self.assertEqual(9.8, test_dict["latitude"])
+
 
 class TestHBNBCommand_count(unittest.TestCase):
     """Unittests for testing count method of HBNB comand interpreter."""
