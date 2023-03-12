@@ -19,6 +19,7 @@ from models.review import Review
 
 # global tokenizing function
 def parse(arg):
+    """ Tokenize input from cmd line and perform approriate function"""
     curly_braces = re.search(r"\{(.*?)\}", arg)
     b_brackets = re.search(r"\[(.*?)\]", arg)
     if curly_braces is None:  # extract contents of braces or bracts
@@ -53,8 +54,8 @@ class HBNBCommand(cmd.Cmd):
         Return:
             executes invalid command if tokens are in cmd module
             else unknown syntax result
-        """
-        """ split command entered into two: outer method name
+        How it works:
+            split command entered into two: outer method name
             and inner method name. Look for parentheses in inner method
             if inner method name contains parentheses and outher method name
             is in dict_args, construct new command string by combining
@@ -230,12 +231,6 @@ class HBNBCommand(cmd.Cmd):
                     obj.__dict__[k] = v
 
         storage.save()
-        """v_type contains the type of the previous value so that we
-        can cast the new value into the required data type
-        else if it is not in the dict, store it fresh with a string type.
-        You can change the data type to your later when you run update
-        in the future, it would be stored as that data type
-        """
 
     def do_count(self, arg):
         """Retrieve the number of instances of a class"""
