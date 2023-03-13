@@ -19,7 +19,11 @@ from models.review import Review
 
 # global tokenizing function
 def parse(arg):
-    """ Tokenize input from cmd line and perform approriate function"""
+    """ Tokenize input from cmd line and perform approriate function
+        It refines the output from the default function
+        This happens when we call functions like: 
+            <className>.<method>(args) way
+    """
     curly_braces = re.search(r"\{(.*?)\}", arg)
     b_brackets = re.search(r"\[(.*?)\]", arg)
     if curly_braces is None:  # extract contents of braces or bracts
@@ -80,6 +84,7 @@ class HBNBCommand(cmd.Cmd):
                 command = [arg_list[1][:match.span()[0]], match.group()[1:-1]]
                 if command[0] in dict_args.keys():
                     call = "{} {}".format(arg_list[0], command[1])
+                    print("{}{}".format(command[0], call)) 
                     return dict_args[command[0]](call)
         print("*** Unknown syntax: {}".format(arg))
         return False
@@ -109,7 +114,7 @@ class HBNBCommand(cmd.Cmd):
         elif arg_list[0] not in AVAILABLE_CLASSES:
             print("** class doesn't exist **")
         else:
-            print(eval(arg_list[0])().id)
+            print(eval(arg_list[0])().id) #Expand for greater readability
             storage.save()
 
         '''
