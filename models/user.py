@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """
-Define and implement User attributes for user side console application"""
+Define and implement User attributes for user side console application
+"""
 
 from models.base_model import BaseModel
 
