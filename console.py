@@ -62,7 +62,7 @@ class HBNBCommand(cmd.Cmd):
             outer method name with args passed to inner method.
             Look up corresponding method of outer method name in dict_args
             and call method with new command string as args.
-            Return False if method cannot parse invalud command by user
+            Return False if method cannot parse invalid command by user
         """
         dict_args = {  # command keywords to implement
                 "all": self.do_all,
