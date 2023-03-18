@@ -39,11 +39,10 @@ div.locations {
 
 /* header placing */
 section.filters h3, section.filters h4 {
-	-webkit-box-sizing: border-box;
-	  -moz-box-sizing: border.box;
-		box-sizing: border-box;
-		margin: 0;
-	}
+	box-sizing: border-box;
+	margin: 0;
+}
+
 /* headers styling */
 div.locations h3, div.amenities h3 {
 	font-weight: 600;
