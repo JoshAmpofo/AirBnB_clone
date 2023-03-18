@@ -11,3 +11,7 @@ footer {
 	position: absolute;
 	bottom: 0;
 }
+/* bolden footer text */
+footer p strong {
+	font-weight: bold;
+}
