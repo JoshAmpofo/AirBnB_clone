@@ -8,8 +8,9 @@ footer {
 	text-align: center;
 	align-items: center;
 	justify-content: center;
-	position: absolute;
+	position: fixed;
 	bottom: 0;
+	line-height: 60px
 }
 /* bolden footer text */
 footer p strong {
